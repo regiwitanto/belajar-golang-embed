@@ -1,6 +1,7 @@
 package belajar_golang_embed
 
 import (
+	"embed"
 	_ "embed"
 	"fmt"
 	"io/fs"
@@ -27,4 +28,20 @@ func TestByte(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
+}
+
+//go:embed files/a.txt
+//go:embed files/b.txt
+//go:embed files/c.txt
+var files embed.FS
+
+func TestMultipleFiles(t *testing.T) {
+	a, _ := fs.ReadFile(files, "files/a.txt")
+	fmt.Println(string(a))
+
+	b, _ := fs.ReadFile(files, "files/b.txt")
+	fmt.Println(string(b))
+
+	c, _ := fs.ReadFile(files, "files/c.txt")
+	fmt.Println(string(c))
 }
