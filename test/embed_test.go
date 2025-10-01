@@ -1,4 +1,4 @@
-package belajar_golang_embed
+package test
 
 import (
 	"embed"
@@ -51,7 +51,7 @@ var path embed.FS
 
 func TestPathMatcher(t *testing.T) {
 	dirEntries, _ := path.ReadDir("files")
-	for _, entry  := range dirEntries {
+	for _, entry := range dirEntries {
 		if !entry.IsDir() {
 			fmt.Println(entry.Name())
 			file, _ := path.ReadFile("files/" + entry.Name())
